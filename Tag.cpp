@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "Tag.h"
+
 using namespace std;
 
 
@@ -23,8 +25,19 @@ void readAndParse(vector<TagStruct> vect) {
   	cout <<"\"" << p->tagName << "\""<< ", \n";
   }
   }
+  
+  void writeTags(vector<TagStruct> vect){
+  
+  ofstream MyFile("Tags.txt");
+  
+  for (vector<TagStruct>::iterator p = vect.begin(); p != vect.end(); ++p){
+  	MyFile <<"\"" << p->tagName << "\""<< "," << p->numOfTags << ","<<"\"" << p->text << "\""<< endl;
+  }
 
-int main ()
+  MyFile.close();
+  }
+
+/*int main ()
 {
   vector<TagStruct> tags;
   ifstream file("simple.txt");
@@ -55,10 +68,6 @@ int main ()
 	   tags.push_back(c);
 	  }
 }
-
- /*for (vector<TagStruct>::iterator p = tags.begin(); p != tags.end(); ++p){
-  	cout <<"\"" << p->tagName << "\""<< "," << p->numOfTags << ","<<"\"" << p->text << "\""<< endl;
-  }*/
  
   cout << "Enter an option (r,p,d,l) or q to quit, and press return... \n";
   cin >> input;
@@ -71,7 +80,7 @@ int main ()
       	 printAllTags(tags);
          break;
       case 'd' :
-         cout << "Well done" << endl;
+         writeTags(tags);
          break;
       case 'l' :
          readAndParse(tags);
@@ -85,4 +94,4 @@ int main ()
 
  return 0;
 }
-
+*/
