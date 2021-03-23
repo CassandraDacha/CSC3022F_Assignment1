@@ -10,36 +10,44 @@ struct TagStruct {
   int numOfTags;
   string text;
   
-} ;/*tags [3];*/
+} ;
+
+void readAndParse(vector<TagStruct> vect) {
+ for (vector<TagStruct>::iterator p = vect.begin(); p != vect.end(); ++p){
+  	cout <<"\"" << p->tagName << "\""<< "," << p->numOfTags << ","<<"\"" << p->text << "\""<< endl;
+  }
+  }
+  
+ void printAllTags(vector<TagStruct> vect) {
+ for (vector<TagStruct>::iterator p = vect.begin(); p != vect.end(); ++p){
+  	cout <<"\"" << p->tagName << "\""<< ", \n";
+  }
+  }
 
 int main ()
 {
   vector<TagStruct> tags;
   ifstream file("simple.txt");
   string str,x,y,z;
+  char input;
   int count;
   bool found = false;
-  while (getline(file, str)) {
+  
+   while (getline(file, str)) {
     x = str.substr(str.find(">")+1,str.find("/"));
     y = x.substr(0,x.find("<"));
     z = str.substr(str.find("<")+1,str.find(">")-1);
-   /* count++;
-    tags[count].tagName = z;
-    tags[count].text = y;
-    tags[count].numOfTags = 1;
-    /*cout <<z<< "\n";
-      cout << tags[count].tagName << "\n";
-      cout << tags[count].text << "\n";
-  
-    */
-   /* for(int i = 0; i < int(tags.size()); i++) {
+ 
+ 
+    for(int i = 0; i < int(tags.size()); i++) {
       if(tags[i].tagName == z) {
          found = true;
+         tags[i].text = tags[i].text + ":" + y ;
+         tags[i].numOfTags = tags[i].numOfTags + 1;
          break;
    }
-  }*/
+  }
 	  if(!found) {
-	   //create struct
 	   TagStruct c;
 	   c.tagName = z;
 	   c.numOfTags = 1;
@@ -47,9 +55,34 @@ int main ()
 	   tags.push_back(c);
 	  }
 }
- for (vector<TagStruct>::iterator p = tags.begin(); p != tags.end(); ++p){
-  	cout << p->tagName << " " << p->text << endl;
+
+ /*for (vector<TagStruct>::iterator p = tags.begin(); p != tags.end(); ++p){
+  	cout <<"\"" << p->tagName << "\""<< "," << p->numOfTags << ","<<"\"" << p->text << "\""<< endl;
+  }*/
+ 
+  cout << "Enter an option (r,p,d,l) or q to quit, and press return... \n";
+  cin >> input;
+ 
+  switch(input) {
+      case 'r' :
+         readAndParse(tags);
+         break;
+      case 'p' :
+      	 printAllTags(tags);
+         break;
+      case 'd' :
+         cout << "Well done" << endl;
+         break;
+      case 'l' :
+         readAndParse(tags);
+         break;
+      case 'q' :
+         cout << "Better try again" << endl;
+         break;
+      default :
+         cout << "Invalid input" << endl;
   }
+
  return 0;
 }
 
