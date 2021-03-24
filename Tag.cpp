@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "Tag.h"
+
 
 using namespace std;
 
@@ -37,10 +37,10 @@ void readAndParse(vector<TagStruct> vect) {
   MyFile.close();
   }
 
-/*int main ()
+int main ()
 {
   vector<TagStruct> tags;
-  ifstream file("simple.txt");
+  ifstream file("long.txt");
   string str,x,y,z;
   char input;
   int count;
@@ -94,4 +94,4 @@ void readAndParse(vector<TagStruct> vect) {
 
  return 0;
 }
-*/
+
