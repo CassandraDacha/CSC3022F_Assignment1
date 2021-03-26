@@ -10,7 +10,7 @@ int main ()
 {
 /*Main function that  reads in the file string by string storing  the tag name in variable tag, text in variable text and updates the number of times a tag is seen in the string */
   vector<TagStruct> tags;
-  ifstream file("simple.txt");
+  ifstream file("./Examples/simple.txt");
   string str,x,text,tag;
   char input;
   int count;

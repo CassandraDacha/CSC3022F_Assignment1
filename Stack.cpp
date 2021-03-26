@@ -81,13 +81,27 @@ void readAndParse(stack<string> s, vector <TagStruct> v)
 
 
 
-int main ()
+ int main(int argc, char* argv[])
 {
+string filename;
   vector<TagStruct> tags;
    bool found = false;
    string str;
    stack<string> S;
-  ifstream file("long_nested.txt");
+   
+  if(argc == 1){
+   filename = "./Examples/long_nested.txt";
+   }
+ else{
+  filename = argv[1];
+  }
+ ifstream file(filename);
+  if(!file)
+     {
+     cout << "Couldn't open file " << filename << endl;
+     return 1;
+     }
+  
 
   
    while (getline(file, str)) {
