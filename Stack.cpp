@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <stack>
+#include<algorithm>
+#include<unordered_map>
 
 
 using namespace std;
@@ -15,7 +17,7 @@ struct TagStruct {
   
 } ;
 
-void PrintStack(stack<string> s)
+void readAndParse(stack<string> s, vector <TagStruct> v)
 {
     // If stack is empty then return
     if (s.empty())
@@ -23,19 +25,15 @@ void PrintStack(stack<string> s)
      
  
     string x = s.top();
-    string r;
+    string r,u,q;
     vector <string> z ;
-    bool count = false;
-  for(int i = 0; i < int(x.length()); i++) {
+    bool found = false;
+    int result = 0;
     
-    if (x[
-   
-   if(!count){
-   	
-   }
-   if (x[i] == '<'&& x[i+1] != '/'){
-   	if(){}
-   	 r = x.substr(i+1);
+  for(int i = 0; i < int(x.rfind(">")); i++) {
+ 
+   if (x[i] == '<'&& x[i+1] != '/' ){
+   	 r = x.substr(i+1,x.find(">")-1);
     	 z.push_back(r);
    } 
    }
@@ -43,34 +41,62 @@ void PrintStack(stack<string> s)
    s.pop();
  
     // Recursively call the function PrintStack
-    PrintStack(s);
+    readAndParse(s,v);
  
     // Print the stack element starting
     // from the bottom
-   for(int i = 0; i < z.size(); i++){
-    	cout << z[i] << "\n ";
- 	}
+    
+    unordered_map<string,int> m;
+        for(int i=0; i<z.size(); i++){
+            if(m.count(z[i])==0)
+                m[z[i]] = 1;
+            else
+                m[z[i]]++;   
+        }
+    
+     
+     for (auto itr = m.cbegin(); itr != m.cend(); ++itr) {
+      	cout<< itr->first << " " << itr->second << endl;
+    }
+  
+   /*for(int i = 0; i < z.size(); i++){
+    	if(!found) {
+	   TagStruct c;
+	   c.tagName = z[i];
+	   c.numOfTags = 1;
+	   c.text = "Hi";
+	   v.push_back(c);
+	   }
+	}
+*/
+/*for (vector<TagStruct>::iterator p = v.begin(); p != v.end(); ++p){
+  	cout <<"\"" << p->tagName << "\""<< "," << p->numOfTags << ","<<"\"" << p->text << "\""<< endl;
+  }
+  
+  */
     // Push the same element onto the stack
     // to preserve the order
     //s.push(x);
 }
 
+
+
 int main ()
 {
   vector<TagStruct> tags;
-  stack<string> S ;
+   bool found = false;
+   string str;
+   stack<string> S;
   ifstream file("long_nested.txt");
-  string str,x,y,z;
-  char input;
-  int count;
-  bool found = false;
+
   
    while (getline(file, str)) {
    
    S.push(str); 
 
 	}
-   PrintStack(S);
+   readAndParse(S,tags);
+
    
     return 0;
 }

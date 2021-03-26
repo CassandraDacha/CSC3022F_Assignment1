@@ -3,12 +3,16 @@
 #ifndef _TAG
 #define _TAG
 #include <vector>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
 
 struct TagStruct {
   string tagName;
   int numOfTags;
   string text;
-  
 } ;
 
 void readAndParse(vector<TagStruct> vect);   // a function "prototype" - tells compiler all about readAndParse function

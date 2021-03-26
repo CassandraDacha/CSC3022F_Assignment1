@@ -37,8 +37,16 @@ int main ()
 	   tags.push_back(c);
 	  }
 }
+
+while (true){
  
   cout << "Enter an option (r,p,d,l) or q to quit, and press return... \n";
+  cout<< "r: Read and process tag file \n";
+  cout<< "p: Print all tags \n";
+  cout<< "d: dump/write tags and data to a file called tag.txt \n";
+  cout<< "l: list/print tag data for given tag t \n";
+  cout<< "q: Quit \n";
+  cout << "\n";
   cin >> input;
  
   switch(input) {
@@ -55,11 +63,11 @@ int main ()
          readAndParse(tags);
          break;
       case 'q' :
-         cout << "Better try again" << endl;
+         exit(0);
          break;
       default :
          cout << "Invalid input" << endl;
   }
-
+}
  return 0;
 }
